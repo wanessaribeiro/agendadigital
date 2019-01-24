@@ -5,56 +5,52 @@ import java.util.List;
 import br.com.iftm.entity.TipoServico;
 
 public interface TipoServicoBusiness {
-
 	/**
-	 * Método responsavel por garantir os parametros obrigatorios, bem como
-	 * solicitar a camada de acesso a dados que persistam o Objeto.
+	 * Metodo responsavel por garantir os parametros obrigatorios, bem como
+	 * solicitar a camada de acesso a dados que persista o Objeto
+	 * {@link TipoServico}.
 	 * 
-	 * @param tipoServico Objeto a ser persistido
-	 * @return Objeto persistido
+	 * @param tipoServico Objeto a ser persistido.
+	 * @return Objeto persistido.
 	 * @throws BusinessException
 	 */
 	TipoServico create(TipoServico tipoServico) throws BusinessException;
 
 	/**
-	 * Metodo responsavel por recuperar da base de dados todos os objetos
-	 * {@link TipoServico}
+	 * Método responsável por solicitar a camada de acesso pela lista de todos os
+	 * objetos do tipo {@link TipoServico}
 	 * 
-	 * @parammnomw Parte do nome a ser buscado.
-	 * @return
-	 * @throws BusinessException
-	 */
-
-	List<TipoServico> read() throws BusinessException;
-
-	/**
-	 * Metodo responsavel por recuperar da base de dados todos os objetos
-	 * {@link TipoServico}, cujo nome possua parte do parametro Nome.
-	 * 
-	 * @param nome parte do nome a ser buscado
 	 * @return Lista de {@link TipoServico}
 	 * @throws BusinessException
 	 */
+	List<TipoServico> read() throws BusinessException;
 
+	/**
+	 * Método responsável por solicitar a camada de acesso a lista filtrada pelo
+	 * parametro Nome.
+	 * 
+	 * @return Lista de {@link TipoServico}
+	 * @throws BusinessException
+	 */
 	List<TipoServico> readByName(String nome) throws BusinessException;
 
 	/**
-	 * Método responsavel por persitir (atualizar) na base de dados o objeto
+	 * Mtodo responsavel por validar os dados e solicitar a atualizacao na camada de
+	 * acesso aos dados para o objeto do tipo {@link TipoServico}.
 	 * 
-	 * @param tipoServico Objeto a ser persistido
+	 * 
+	 * @param tipoServico Objeto a ser persistido.
 	 * @return Objeto persistido
 	 * @throws BusinessException
 	 */
-
 	TipoServico update(TipoServico tipoServico) throws BusinessException;
 
 	/**
-	 * Método responsavel por excluir da base de dados o objeto {@link TipoServico}
-	 * referente ao id informado
+	 * Metodo responsavel por validar o parametro e solicitar a exclusão na base de
+	 * dados do objeto do tipo {@link TipoServico} referente ao id informado.
 	 * 
-	 * @param id que identifica o objeto que será excluido
+	 * @param id Identificador do objeto {@link TipoServico} a ser excluido.
 	 * @throws BusinessException
 	 */
-
-	void delete(Integer n) throws BusinessException;
+	void delete(Integer id) throws BusinessException;
 }

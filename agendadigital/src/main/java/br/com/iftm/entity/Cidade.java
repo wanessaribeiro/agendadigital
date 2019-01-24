@@ -1,9 +1,12 @@
 package br.com.iftm.entity;
 
-public class TipoServico {
-	
+import br.com.iftm.enums.Estado;
+
+public class Cidade {
+
 	private Integer codigo;
 	private String nome;
+	private Estado estado;
 	
 	public Integer getCodigo() {
 		return codigo;
@@ -16,5 +19,11 @@ public class TipoServico {
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public Estado getEstado() {
+		return estado;
+	}
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 }

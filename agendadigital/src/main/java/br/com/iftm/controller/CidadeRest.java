@@ -16,22 +16,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.iftm.business.BusinessException;
-import br.com.iftm.business.TipoServicoBusiness;
+import br.com.iftm.business.CidadeBusiness;
+import br.com.iftm.entity.Cidade;
 import br.com.iftm.entity.TipoServico;
+import br.com.iftm.enums.Estado;
 
 @RestController // Habilita Classe com um serviço rest
-@RequestMapping(value = "/tiposervico") // Nome do serviço
-public class TipoServicoRest {
-
+@RequestMapping(value = "/cidade") // Nome do serviço
+public class CidadeRest {
+	
 	@Autowired
-	private TipoServicoBusiness business;
-
-	// Create
+	private CidadeBusiness business;
+	
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody TipoServico tipoServico) {
+	public ResponseEntity<?> create(@RequestBody Cidade cidade) {
+		
 		try {
-			tipoServico = business.create(tipoServico);
-			return ResponseEntity.ok(tipoServico);
+			cidade = business.create(cidade);
+			return ResponseEntity.ok(cidade);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);
@@ -40,10 +42,10 @@ public class TipoServicoRest {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
-
-	// Read
+	
 	@GetMapping
-	public ResponseEntity<?> read() {
+	public ResponseEntity<?> read(){
+		
 		try {
 			return ResponseEntity.ok(business.read());
 		} catch (BusinessException e) {
@@ -51,11 +53,12 @@ public class TipoServicoRest {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
-
-	@GetMapping("/filtro/nome")
-	public ResponseEntity<?> readByName(@PathParam("nome") String nome) {
+	
+	@GetMapping("/filtro/estado")
+	public ResponseEntity<?> readByEstado(@PathParam("nome") Estado nome){
+		
 		try {
-			List<TipoServico> temp = business.readByName(nome);
+			List<Cidade> temp = business.readByEstado(nome);
 
 			if (temp.isEmpty()) {
 				return ResponseEntity.notFound().build();
@@ -71,12 +74,12 @@ public class TipoServicoRest {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
-
-	// Update
+	
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody TipoServico tipoServico) {
+	public ResponseEntity<?> update(@RequestBody Cidade cidade){
+		
 		try {
-			return ResponseEntity.ok(business.update(tipoServico));
+			return ResponseEntity.ok(business.update(cidade));
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);
@@ -85,10 +88,10 @@ public class TipoServicoRest {
 			return ResponseEntity.badRequest().body(e);
 		}
 	}
-
-	// Delete
+	
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<?> delete(@PathVariable("id") Integer id) {
+	public ResponseEntity<?> delete(@PathVariable("id") Integer id){
+		
 		try {
 			business.delete(id);
 			return ResponseEntity.ok().build();

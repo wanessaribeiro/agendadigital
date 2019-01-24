@@ -1,9 +1,5 @@
 package br.com.iftm.controller;
 
-import java.util.List;
-
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,22 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.iftm.business.BusinessException;
-import br.com.iftm.business.TipoServicoBusiness;
-import br.com.iftm.entity.TipoServico;
+import br.com.iftm.business.PrestadorServicoBusiness;
+import br.com.iftm.entity.PrestadorServico;
 
 @RestController // Habilita Classe com um serviço rest
-@RequestMapping(value = "/tiposervico") // Nome do serviço
-public class TipoServicoRest {
+@RequestMapping(value = "/prestadorservico") // Nome do serviço
+public class PrestadorServicoRest {
 
 	@Autowired
-	private TipoServicoBusiness business;
+	private PrestadorServicoBusiness business;
 
 	// Create
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody TipoServico tipoServico) {
+	public ResponseEntity<?> create(@RequestBody PrestadorServico prestador) {
 		try {
-			tipoServico = business.create(tipoServico);
-			return ResponseEntity.ok(tipoServico);
+			prestador = business.create(prestador);
+			return ResponseEntity.ok(prestador);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);
@@ -52,31 +48,11 @@ public class TipoServicoRest {
 		}
 	}
 
-	@GetMapping("/filtro/nome")
-	public ResponseEntity<?> readByName(@PathParam("nome") String nome) {
-		try {
-			List<TipoServico> temp = business.readByName(nome);
-
-			if (temp.isEmpty()) {
-				return ResponseEntity.notFound().build();
-			} else {
-				return ResponseEntity.ok(temp);
-			}
-
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(e);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResponseEntity.badRequest().body(e);
-		}
-	}
-
 	// Update
 	@PutMapping
-	public ResponseEntity<?> update(@RequestBody TipoServico tipoServico) {
+	public ResponseEntity<?> update(@RequestBody PrestadorServico prestador) {
 		try {
-			return ResponseEntity.ok(business.update(tipoServico));
+			return ResponseEntity.ok(business.update(prestador));
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e);

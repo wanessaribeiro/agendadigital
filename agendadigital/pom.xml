@@ -8,11 +8,11 @@
 		<version>2.1.2.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>agendadigital</artifactId>
+	<groupId>br.com.iftm</groupId>
+	<artifactId>agenda-digital</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>agendadigital</name>
-	<description>Demo project for Spring Boot</description>
+	<name>agenda-digital</name>
+	<description>Agenda Digital</description>
 
 	<properties>
 		<java.version>1.8</java.version>
